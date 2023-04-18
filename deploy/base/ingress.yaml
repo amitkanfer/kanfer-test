@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  creationTimestamp: null
+  name: kanfer-test-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: kanfer-test.cluster.koalaops.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: kanfer-test-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - kanfer-test.cluster.koalaops.com
+    secretName: kanfer-test-tls-cert
+status:
+  loadBalancer: {}

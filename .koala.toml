@@ -1,0 +1,45 @@
+Name = "kanfer-test"
+Description = "kanfer-test"
+ServerFramework = "go-server"
+ServerMain = ""
+ArtifactRepository = "me-west1-docker.pkg.dev/koala-ops-demo-373407/koala-repo"
+Domain = "cluster.koalaops.com"
+
+[Repo]
+  Name = "kanfer-test"
+  GitUser = "koala-sandbox"
+  URL = "https://github.com/koala-sandbox/kanfer-test"
+
+[OpenAPIConfig]
+  SpecPath = ""
+  CodegenTool = ""
+
+[[Environments]]
+  Name = "dev"
+  Namespace = "dev"
+  Cluster = "koala-demo-cluster"
+  IngressEnabled = true
+  IngressHost = ""
+  [Environments.EnvDeploymentConfig]
+    AutoDeploy = true
+
+[[Environments]]
+  Name = "prod"
+  Namespace = "prod"
+  Cluster = "koala-demo-cluster"
+  IngressEnabled = true
+  IngressHost = ""
+  [Environments.EnvDeploymentConfig]
+    AutoDeploy = false
+
+[SSLConfig]
+  CertName = "kanfer-test-tls-cert"
+  Issuer = "letsencrypt"
+  IssuerContactEmail = "nadav@koalaops.com"
+
+[Tracing]
+  Backend = ""
+  URL = ""
+
+[Profiling]
+  Tool = ""
